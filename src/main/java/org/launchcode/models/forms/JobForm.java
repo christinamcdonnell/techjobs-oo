@@ -19,7 +19,7 @@ public class JobForm {
     @Size(min=1, message = "Name may not be empty")
     private String name;
 
-    @NotNull
+    // @NotNull
     private int employerId;
 
     /*
@@ -27,10 +27,16 @@ public class JobForm {
         with correct validation attributes and display names.
         Don't forget to add getters and setters
      */
-
+    @NotNull(message = "Please choose an employer")
     private ArrayList<Employer> employers;
+
+    @NotNull(message = "Please choose a location")
     private ArrayList<Location> locations;
+
+    @NotNull(message = "Please choose a skill")
     private ArrayList<CoreCompetency> coreCompetencies;
+
+    @NotNull(message = "Please choose a position type")
     private ArrayList<PositionType> positionTypes;
 
     public JobForm() {
@@ -42,7 +48,9 @@ public class JobForm {
         */
 
         employers = jobData.getEmployers().findAll();
-
+        locations = jobData.getLocations().findAll();
+        positionTypes = jobData.getPositionTypes().findAll();
+        coreCompetencies = jobData.getCoreCompetencies().findAll();
     }
 
     public String getName() {

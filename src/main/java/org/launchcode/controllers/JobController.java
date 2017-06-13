@@ -24,7 +24,8 @@ public class JobController {
     public String index(Model model, int id) {
 
         // TODO #1 - get the Job with the given ID and pass it into the view
-
+        model.addAttribute("title", "Job Detail for Id = " + id);
+        model.addAttribute("job", jobData.findById(id));
         return "job-detail";
     }
 
@@ -41,7 +42,7 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
-        return "";
+        return "job-detail" + "";
 
     }
 }

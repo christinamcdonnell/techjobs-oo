@@ -1,6 +1,6 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.CoreCompetency;
+import org.launchcode.models.*;
 import org.launchcode.models.forms.JobForm;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
@@ -56,9 +56,11 @@ public class JobController {
         PositionType postype = JobData.getPositionTypes().findById(jobForm.getPositionTypeId());
         CoreCompetency corecomp = JobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
 
-        Job newjob = Job(thename, emp, loc, postype, corecomp );
+        // What about the id this constructor will generate as part of the Job object
+        // Won't that be diff from what was passed into
+        Job newjob = new Job(thename, emp, loc, postype, corecomp );
 
-        model.addAttribute(jobData.add(newJob));
+        model.addAttribute(JobData.add(newjob));
         return "redirect:?id=" + Id;
 
     }

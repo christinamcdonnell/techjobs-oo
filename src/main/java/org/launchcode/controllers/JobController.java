@@ -51,17 +51,22 @@ public class JobController {
 
         String thename = jobForm.getName();
 
-        Employer emp = JobData.getEmployers().findById(jobForm.getEmployerId());
-        Location loc = JobData.getLocations().findById(jobForm.getLocationId());
-        PositionType postype = JobData.getPositionTypes().findById(jobForm.getPositionTypeId());
-        CoreCompetency corecomp = JobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
+        //Employer emp = JobData.getEmployers().findById(jobForm.getEmployerId());
+        Employer emp = jobData.getEmployers().findById(jobForm.getEmployerId());
+
+        //Location loc = JobData.getLocations().findById(jobForm.getLocationId());
+        Location loc = jobData.getLocations().findById(jobForm.getLocationId());
+        PositionType postype = jobData.getPositionTypes().findById(jobForm.getPositionTypeId());
+        CoreCompetency corecomp = jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
 
         // What about the id this constructor will generate as part of the Job object
         // Won't that be diff from what was passed into
+
         Job newjob = new Job(thename, emp, loc, postype, corecomp );
 
-        model.addAttribute(JobData.add(newjob));
-        return "redirect:?id=" + Id;
+        //model.addAttribute(JobData.add(newjob));
+        model.addAttribute(newjob);
+        return "redirect:?id=" + newjob.getId();
 
     }
 }

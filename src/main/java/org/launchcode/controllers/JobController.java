@@ -43,11 +43,12 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
-        model.addAttribute(jobForm);
 
-        if (!errors.hasErrors()){
-            return "new-job";
-        }
+
+        if (errors.hasErrors()){
+            model.addAttribute(jobForm);
+        return "new-job";
+    }
 
         String thename = jobForm.getName();
 
@@ -64,9 +65,9 @@ public class JobController {
 
         Job newjob = new Job(thename, emp, loc, postype, corecomp );
 
-        //model.addAttribute(JobData.add(newjob));
+        jobData.add(newjob);
         model.addAttribute(newjob);
-        return "redirect:?id=" + newjob.getId();
+        return "redirect:/job?id=" + newjob.getId();
 
     }
 }
